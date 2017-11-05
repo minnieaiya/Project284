@@ -50,6 +50,14 @@ public class Member
 	{
 		return firstname+"   "+lastName;
 	}	
+	public String getLastname() 
+	{
+		return lastName;
+	}
+	public String getFirstname() 
+	{
+		return firstname;
+	}
 	public String getSubjectInIndex(int index) {
 		return subjectList.get(index);
 	}

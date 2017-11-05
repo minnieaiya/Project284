@@ -19,7 +19,7 @@ public class MemberList
 		memberStr = new ArrayList<String>();
 		openFile();
 		setMemberList();
-		saveFile();
+	//	saveFile();
 	}
 
 	public void openFile() throws IOException
@@ -58,6 +58,23 @@ public class MemberList
 		PrintWriter writer = new PrintWriter(fileWriter);
 		for (int i = 0; i < memberList.size(); i++) 
 		{
+			writer.print(memberList.get(i).toString());	
+		}		
+		writer.close();
+		fileWriter.close();
+	}	
+	public void updateFile(Member member) throws IOException 
+	{
+		FileWriter fileWriter = new FileWriter(file,false);
+		PrintWriter writer = new PrintWriter(fileWriter);
+		for (int i = 0; i < memberList.size(); i++) 
+		{
+			if(memberList.get(i).getName().equalsIgnoreCase(member.getName()))
+			{
+				memberList.get(i).setEmail(member.getEmail());
+				memberList.get(i).setUsername(member.getUsername());
+				memberList.get(i).setPassword(member.getPassword());
+			}
 			writer.print(memberList.get(i).toString());	
 		}		
 		writer.close();

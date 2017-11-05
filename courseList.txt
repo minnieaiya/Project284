@@ -1,0 +1,38 @@
+CS101,Discrete Structures.,100,30,100,50,100,20
+CS102,Computer Programming Fund.,100,30,100,50,100,20
+CS103,Intro. to Computer Programming.,100,30,100,50,100,20
+CS105,Practicum for Structural Programming.,100,30,100,50,100,20
+CS211,Software Development using API.,100,30,100,50,100,20
+CS213,Data Structures.,100,30,100,50,100,20
+CS215,Programming Practicum using API.,100,20,100,50,100,30
+CS223,Computer Organization & Architecture.,100,30,100,50,100,20
+CS275,Human Information Processing.,100,30,100,50,100,20
+CS284,Intro. to Software Engineering.,100,30,100,50,100,20
+CS285,Practices & Patterns in O-O Programming.,100,30,100,50,100,20
+CS286,Software Process & Quality Assurance.,100,30,100,50,100,20
+CS287,Software Requirement Specification and Management.,100,30,100,50,100,20
+CS296,Art and Design Foundations.,100,30,100,50,100,20
+CS297,Fundamental Techniques in Computer Graphics using API.,100,30,100,50,100,20
+CS298,Fundamentals of Computer Graphics.,100,30,100,50,100,20
+CS299,Computer Graphics 1.,100,30,100,50,100,20
+CS300,Seminar in Practical Programming.,100,30,100,50,100,20
+CS301,Computer Science Project Proposal and Presentation.,100,30,100,50,100,20
+CS342,Net-Centric Computing 1.,100,30,100,50,100,20
+CS355,Mobile Application Development.,100,30,100,50,100,20
+CS365,Basic Theory in Artificial Intelligence.,100,30,100,50,100,20
+CS374,Human - Computer Interaction.,100,30,100,50,100,20
+CS387,Software Configuration Management.,100,30,100,50,100,20
+CS396,Computer Graphics Modeling.,100,30,100,50,100,20
+CS401,Special Projects 1.,100,30,100,50,100,20
+CS407,Seminar in Software Engineering.,100,30,100,50,100,20
+CS409,Selected Topics in Computer Science.,100,30,100,50,100,20
+CS427,Parallel Algorithm Designs.,100,30,100,50,100,20
+CS447,Operating Systems 2.,100,30,100,50,100,20
+CS448,Net - Centric Computing 3.,100,30,100,50,100,20
+CS449,Selected Topics in Net-Centric Computing.,100,30,100,50,100,20
+CS456,Management Information Systems.,100,30,100,50,100,20
+CS457,Database Systems 2.,100,30,100,50,100,20
+CS465,Advanced Search Strategies.,100,30,100,50,100,20
+CS479,Selected Topics in Multimedia Content Analysis.,100,30,100,50,100,20
+CS488,Formal Methods.,100,30,100,50,100,20
+CS498,Game Programming.,100,30,100,50,100,20

@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 
 import javax.security.auth.login.LoginException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import View.CourseFrame;
@@ -29,9 +30,9 @@ public class LoginController
 			}
 			checkPassword(index, pass);
 		}
-		catch (LoginException e) 
+		catch (LoginException ex) 
 		{
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, ex.getMessage(),"Message",JOptionPane.INFORMATION_MESSAGE,new ImageIcon("bee.png"));
 		}
 	}
 	
@@ -57,12 +58,12 @@ public class LoginController
 		}
 		if(list.getMemberList(index).getPassword().equals(passStr))
 		{			
-			new CourseFrame(index);
+			new CourseFrame(list.getMemberList(index));
 			check = true;
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, new LoginException("Username or password is incorrect, please fill in again.").getMessage());
+			JOptionPane.showMessageDialog(null, new LoginException("Username or password is incorrect, please fill in again.").getMessage(),"Message",JOptionPane.INFORMATION_MESSAGE,new ImageIcon("bee.png"));
 			check = false;
 		}		
 	}

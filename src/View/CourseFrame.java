@@ -2,6 +2,8 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,11 +14,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import model.Course;
 import model.CourseList;
+import model.Member;
 import model.MemberList;
 
 public class CourseFrame extends JFrame 
@@ -24,13 +31,12 @@ public class CourseFrame extends JFrame
 	JPanel mini;
 	JList subject;
 	String[] mySubject;
-	MemberList list;
 	CourseList courseList;
+	Member member;
 
-	private int index;
-	public CourseFrame(int index) throws IOException
+	public CourseFrame(Member member) throws IOException
 	{
-		this.index = index;
+		this.member = member;		
 		JPanel main = new JPanel();
 		main.setLayout(new BorderLayout());
 				
@@ -40,15 +46,7 @@ public class CourseFrame extends JFrame
 		
 		showSubjectList();
 		subjectChose();
-		
-		JPanel usrePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel nameLabel = new JLabel(list.getMemberList(index).getName());
-		nameLabel.setHorizontalAlignment (SwingConstants.RIGHT);
-		nameLabel.setIcon(new ImageIcon("userIcon.png"));
-		usrePanel.add(nameLabel);
-		usrePanel.setBackground(new Color(179, 235, 255));
-		usrePanel.setBorder(BorderFactory.createLoweredSoftBevelBorder());
-		add(usrePanel, BorderLayout.NORTH);
+		showTopPage();
 		
 		main.add(mini, BorderLayout.CENTER);
 		add(main);
@@ -57,6 +55,58 @@ public class CourseFrame extends JFrame
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	public void showTopPage() 
+	{
+		JPanel usrePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JLabel nameLabel = new JLabel(member.getName());
+		nameLabel.setHorizontalAlignment (SwingConstants.RIGHT);
+		nameLabel.setIcon(new ImageIcon("userIcon.png"));
+		usrePanel.add(nameLabel);
+		usrePanel.setBackground(new Color(179, 235, 255));
+		usrePanel.setBorder(BorderFactory.createLoweredSoftBevelBorder());
+		add(usrePanel, BorderLayout.NORTH);
+		
+		JMenuBar bar = new JMenuBar();
+		JMenu menu = new JMenu("Menu");
+		JMenuItem profile = new JMenuItem("Profile");
+		JMenuItem logOut = new JMenuItem("Log out");
+		bar.add(menu);
+		menu.add(profile);
+		menu.addSeparator();
+		menu.add(logOut);
+		setJMenuBar(bar);	
+		profile.addActionListener(new ActionListener() 
+		{			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				try {
+					new ProfileMember(member);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
+			}
+		});
+		logOut.addActionListener(new ActionListener() 
+		{			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				try 
+				{
+					new LoginForm();
+				} 
+				catch (IOException e1) 
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		
 	}
 		
 	public void subjectChose() 
@@ -71,7 +121,7 @@ public class CourseFrame extends JFrame
 					String subjectStr = String.valueOf(subject.getSelectedValue());
 					try 
 					{
-						new DetailFrame(index , subjectStr);
+						new DetailFrame(member , course);
 					} 
 					catch (IOException e1) 
 					{
@@ -82,24 +132,25 @@ public class CourseFrame extends JFrame
 			}
 		});
 	}
-	
+	Course course;
 	public void showSubjectList() throws IOException 
 	{
-		list = new MemberList();
 		courseList = new CourseList();
-		mySubject = new String[list.getMemberList(index).getSizeSubject()];
-		for (int i = 0; i < list.getMemberList(index).getSizeSubject(); i++) 
+		mySubject = new String[member.getSizeSubject()];
+		for (int i = 0; i < member.getSizeSubject(); i++) 
 		{
 			for(int j = 0 ; j<courseList.getSize() ; j++ )
 			{
-				if(list.getMemberList(index).getSubjectInIndex(i).equalsIgnoreCase(courseList.getCourse(j).getCourseID()))
+				if(member.getSubjectInIndex(i).equalsIgnoreCase(courseList.getCourse(j).getCourseID()))
 				{
-					mySubject[i] = courseList.getCourse(j).toString();
+					mySubject[i] = courseList.getCourse(j).getCourseID().toUpperCase()+" "+courseList.getCourse(j).getCourseName();
+					course = courseList.getCourse(j);
 				}
 			}
 		}
 		subject = new JList(mySubject);
 		mini.add(subject);
 	}
+	
 
 }
