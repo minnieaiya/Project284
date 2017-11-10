@@ -17,10 +17,12 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import Controller.CourseController;
 import model.Course;
 import model.CourseList;
 import model.Member;
@@ -33,6 +35,7 @@ public class CourseFrame extends JFrame
 	private String[] mySubject;
 	private CourseList courseList;
 	private Member member;
+	private CourseController controller;
 
 	public CourseFrame(Member member) throws IOException
 	{
@@ -117,22 +120,15 @@ public class CourseFrame extends JFrame
 			{
 				if (e.getClickCount() == 1 || e.getClickCount() == KeyEvent.VK_ENTER) 
 				{
-				//	String subjectStr = subject.getSelectedValue();
-					Course course = null;
-					for (int i = 0; i < courseList.getSize(); i++) 
-					{
-						if(subject.getSelectedValue().toString().equalsIgnoreCase(courseList.getCourse(i).getCourseID()+" "+courseList.getCourse(i).getCourseName()))	
-						{
-							course = courseList.getCourse(i);
-						}
-					}					
 					try 
 					{
+						controller = new CourseController(subject.getSelectedValue());
+						Course course = controller.getCourseSelect();
 						new DetailFrame(member , course);
 					} 
-					catch (IOException e1) 
+					catch (IOException ex) 
 					{
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, ex.getMessage(),"Message",JOptionPane.INFORMATION_MESSAGE,new ImageIcon("exceptionIcon.png"));
 					}
 					dispose();
 				}
